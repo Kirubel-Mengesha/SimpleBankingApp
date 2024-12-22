@@ -15,7 +15,7 @@ services:
     container_name: mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=2x6WaTm2q49p
+      - MYSQL_ROOT_PASSWORD=Kira#include!=2025
       - MYSQL_DATABASE=kll-banking-solution
     ports:
       - 3306:3306
