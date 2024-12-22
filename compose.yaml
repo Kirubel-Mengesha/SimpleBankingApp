@@ -1,0 +1,33 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - shared-net
+  db:
+    image: mysql:8.3.0
+    hostname: db
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=2x6WaTm2q49p
+      - MYSQL_DATABASE=kll-banking-solution
+    ports:
+      - 3306:3306
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+volumes:
+  db-data:
+networks:
+  shared-net:
+    driver: bridge
